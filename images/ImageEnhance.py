@@ -33,6 +33,8 @@ image_colored = enh_col.enhance(color)
 # image_colored.show()
 
 
+
+
 # 锐度增强
 enh_sha = ImageEnhance.Sharpness(image)
 sharpness = 3.0

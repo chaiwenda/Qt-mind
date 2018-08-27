@@ -8,6 +8,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5 import QtWebEngineWidgets
 from qtpy import QtWidgets
 from PyQt5.QtWebEngineWidgets import *
+from Children1 import *
 
 
 class MainWindow(QWidget):
@@ -28,47 +29,46 @@ class MainWindow(QWidget):
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.MaingridLayout = QtWidgets.QVBoxLayout()
-        self.MaingridLayout.setObjectName("MaingridLayout")
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setMinimumSize(QtCore.QSize(278, 20))
-        self.lineEdit.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.splitter_5 = QtWidgets.QSplitter(self.centralwidget)
+        self.splitter_5.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter_5.setObjectName("splitter_5")
+        self.splitter_4 = QtWidgets.QSplitter(self.splitter_5)
+        self.splitter_4.setOrientation(QtCore.Qt.Vertical)
+        self.splitter_4.setObjectName("splitter_4")
+        self.splitter_3 = QtWidgets.QSplitter(self.splitter_4)
+        self.splitter_3.setOrientation(QtCore.Qt.Vertical)
+        self.splitter_3.setObjectName("splitter_3")
+        self.splitter_2 = QtWidgets.QSplitter(self.splitter_3)
+        self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter_2.setObjectName("splitter_2")
+        self.lineEdit = QtWidgets.QLineEdit(self.splitter_2)
+        self.lineEdit.setMinimumSize(QtCore.QSize(0, 20))
+        self.lineEdit.setMaximumSize(QtCore.QSize(1000000, 26))
         self.lineEdit.setObjectName("lineEdit")
-        self.horizontalLayout.addWidget(self.lineEdit)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton = QtWidgets.QPushButton(self.splitter_2)
         self.pushButton.setMinimumSize(QtCore.QSize(75, 23))
         self.pushButton.setMaximumSize(QtCore.QSize(75, 16777215))
         self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout.addWidget(self.pushButton)
-        self.MaingridLayout.addLayout(self.horizontalLayout)
-        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser.setMinimumSize(QtCore.QSize(351, 421))
+        self.textBrowser = QtWidgets.QTextBrowser(self.splitter_3)
+        self.textBrowser.setMinimumSize(QtCore.QSize(500, 0))
         self.textBrowser.setObjectName("textBrowser")
-        self.MaingridLayout.addWidget(self.textBrowser)
-        self.textBrowser_4 = QtWidgets.QTextBrowser(self.centralwidget)
+        self.textBrowser_4 = QtWidgets.QTextBrowser(self.splitter_4)
         self.textBrowser_4.setMaximumSize(QtCore.QSize(16777215, 31))
         self.textBrowser_4.setObjectName("textBrowser_4")
-        self.MaingridLayout.addWidget(self.textBrowser_4)
-        self.horizontalLayout_2.addLayout(self.MaingridLayout)
-        spacerItem = QtWidgets.QSpacerItem(111, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem)
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.textBrowser_3 = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser_3.setMinimumSize(QtCore.QSize(256, 192))
-        self.textBrowser_3.setMaximumSize(QtCore.QSize(256, 16777215))
+        self.splitter = QtWidgets.QSplitter(self.splitter_5)
+        self.splitter.setOrientation(QtCore.Qt.Vertical)
+        self.splitter.setObjectName("splitter")
+        self.textBrowser_3 = QtWidgets.QTextBrowser(self.splitter)
+        self.textBrowser_3.setMinimumSize(QtCore.QSize(20, 20))
+        self.textBrowser_3.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.textBrowser_3.setObjectName("textBrowser_3")
-        self.verticalLayout.addWidget(self.textBrowser_3)
-        self.textBrowser_2 = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser_2.setMinimumSize(QtCore.QSize(256, 192))
-        self.textBrowser_2.setMaximumSize(QtCore.QSize(256, 16777215))
+        self.textBrowser_2 = QtWidgets.QTextBrowser(self.splitter)
+        self.textBrowser_2.setMinimumSize(QtCore.QSize(20, 20))
+        self.textBrowser_2.setMaximumSize(QtCore.QSize(12222222, 16777215))
         self.textBrowser_2.setObjectName("textBrowser_2")
-        self.verticalLayout.addWidget(self.textBrowser_2)
-        self.horizontalLayout_2.addLayout(self.verticalLayout)
+        self.verticalLayout.addWidget(self.splitter_5)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 23))
@@ -136,13 +136,52 @@ class MainWindow(QWidget):
         self.toolBar.addAction(self.actionDefaultsave)
 
         self.retranslateUi(MainWindow)
-        self.pushButton.clicked.connect(self.textBrowser.backward)
+        self.pushButton.clicked.connect(self.btn_clicked_search)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # 事件列表
+        self.EventLog = []
+
+    def btn_clicked_search(self):
+        self.EventLog.append("搜索节点激活函数")
+        self.MainWindow2 = MainWindow2()
+        self.MainWindow2.show()
+        self.textBrowser.append("搜索节点激活函数")
+        self.textBrowser_2.append("搜索节点激活函数")
+    def save_exit(self):
+        # 保存文件
+        # 退出
+        print("退出")
+        self.MainWindow2.destroy()
+        self.destroy()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "search"))
+        self.textBrowser.setHtml(_translate("MainWindow",
+                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                            "p, li { white-space: pre-wrap; }\n"
+                                            "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#aaff00;\">结果列表</span></p></body></html>"))
+        self.textBrowser_4.setHtml(_translate("MainWindow",
+                                              "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                              "p, li { white-space: pre-wrap; }\n"
+                                              "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#5555ff;\">文件地址</span></p></body></html>"))
+        self.textBrowser_3.setHtml(_translate("MainWindow",
+                                              "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                              "p, li { white-space: pre-wrap; }\n"
+                                              "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#00ff00;\">交互栏</span></p></body></html>"))
+        self.textBrowser_2.setHtml(_translate("MainWindow",
+                                              "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                              "p, li { white-space: pre-wrap; }\n"
+                                              "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#aaff00;\">事件栏</span></p></body></html>"))
         self.menu.setTitle(_translate("MainWindow", "文件"))
         self.menuEdit.setTitle(_translate("MainWindow", "配置"))
         self.menuHelp.setTitle(_translate("MainWindow", "帮助"))
@@ -156,45 +195,3 @@ class MainWindow(QWidget):
         self.actionImageFile.setText(_translate("MainWindow", "imageFile"))
         self.actionAutoSave.setText(_translate("MainWindow", "AutoSave"))
         self.actionSaveExit.setText(_translate("MainWindow", "saveExit"))
-
-
-class MainWindow2(QMainWindow):
-    def __init__(self):
-        super(QMainWindow, self).__init__()
-        self.setWindowTitle('打开外部网页例子')
-        self.setGeometry(5, 30, 1355, 730)
-        self.browser = QWebEngineView()
-        # 加载外部页面
-        self.browser.load(QUrl('http://www.11315.com/'))
-        self.setCentralWidget(self.browser)
-
-
-class myMainForm(QMainWindow, MainWindow):
-    def __init__(self):
-        super(MainWindow, self).__init__()
-        self.setupUi(self)
-        # 菜单的点击事件，当点击关闭菜单时连接槽函数 close()
-        self.actionSaveExit.triggered.connect(self.close)
-        # 菜单的点击事件，当点击打开菜单时连接槽函数 openMsg()
-        self.actionOpen.triggered.connect(self.openMsg)
-        # 菜单的点击事件，当点击打开菜单时连接槽函数 searchKey()
-        self.actionNew.triggered.connect(self.newMsg)
-
-    def openMsg(self):
-        # app = QApplication(sys.argv)
-        file, ok = QFileDialog.getOpenFileName(self, "打开", "C:/", "All Files (*);;Text Files (*.txt)")
-        # 在状态栏显示文件地址
-        print(type(file))
-        # self.textBrowser_3.showMessage(file)
-        self.textBrowser_4.clear()
-        self.textBrowser_4.append(file)
-    def newMsg(self):
-        self.MainWindow2 = MainWindow2()
-        self.MainWindow2.show()
-
-
-if __name__ == "__main__":
-    App = QApplication(sys.argv)
-    ex = myMainForm()
-    ex.show()
-    sys.exit(App.exec_())
