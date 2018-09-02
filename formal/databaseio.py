@@ -2,27 +2,37 @@ from py2neo import Graph, Node, Relationship
 """
 function :连接数据库
 """
+# match(n)
+# optional match(n)-[r]-()
+# delete n,r
 
-class database:
-    # initialize parm
-    def __init__(self, passmsg):
-        self.passmsg = passmsg
-        self.graph = Graph(password=self.passmsg)
+graph = Graph(
+    "http://localhost:7474",
+    username="neo4j",
+    password="da182681"
+)
+a = Node(label = "company",name = "华为公司demo1")
+a1 = Node(label = "company",name = "华为公司demo2")
+a2 = Node(label = "company",name = "华为公司demo3")
+a3 = Node(label = "company",name = "华为公司demo4")
+b = Node(label = "Person",name = "任正非")
+graph.create(a)
+graph.create(a3)
+graph.create(a1)
+graph.create(a2)
+graph.create(b)
 
-    # Create a node
-    def createNode(self, labe, nameNode):
-        node = Node(labe, name=nameNode)
-        self.graph.create(node)
+re1 = Relationship(a,'CALL',a1)
+re1['count'] = 1
+re2 = Relationship(a,'CALL',a2)
+re2['count'] = 2
+re2 = Relationship(a2,'CALL',a3)
+re2['count'] = 2
+re3 = Relationship(a3,'CALL',b)
+re3['count'] = 3
+graph.create(re1)
+graph.create(re2)
+graph.create(re3)
 
-    # Create relationships and their attributes
-    def createRelationship(self, a, labe, b):
-        re = Relationship(a, labe, b)
-        self.graph.create(re)
-
-    # Query the node and its attributes
-
-    # Query the node and its subtree
-
-    # Query the minimum path between two nodes
 
 
